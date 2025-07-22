@@ -22,12 +22,7 @@ ISTIO_DIR="${1}"
 NAMESPACE="${2}"
 SHARED_DIR="${3}"
 
-# Check if Grafana should be installed for this environment
-source "$SHARED_DIR/environment-config.sh" "${4:-dev}"
-if [ "$GRAFANA_ENABLED" != "true" ]; then
-    echo "Grafana disabled for this environment, skipping installation"
-    exit 0
-fi
+source "$SHARED_DIR/verify-functions.sh"
 
 # Install the Grafana add-on so the user can view Istio metrics in a graphical
 # dashboard
